@@ -30,12 +30,12 @@ export async function getProducts(): Promise<Product[]> {
       
       return {
         id: page.id,
-        name: properties.名前?.title?.[0]?.plain_text || properties.Name?.title?.[0]?.plain_text || '商品名',
-        category: properties.カテゴリー?.select?.name || properties.Category?.select?.name || properties.カテゴリ?.select?.name || '未分類',
-        price: properties.価格?.number || properties.Price?.number || undefined,
-        amazonUrl: properties.AmazonURL?.url || properties.URL?.url || properties.リンク?.url || undefined,
+        name: properties.商品名?.title?.[0]?.plain_text || '商品名',
+        category: properties.カテゴリー?.select?.name || '未分類',
+        price: properties.通常価格?.number || undefined,
+        amazonUrl: properties.購入リンク?.url || undefined,
         imageUrl: properties.画像?.files?.[0]?.file?.url || properties.画像?.files?.[0]?.external?.url || undefined,
-        description: properties.説明?.rich_text?.[0]?.plain_text || properties.Description?.rich_text?.[0]?.plain_text || undefined,
+        description: properties.説明?.rich_text?.[0]?.plain_text || undefined,
       };
     });
 

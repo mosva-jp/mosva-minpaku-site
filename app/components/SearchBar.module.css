@@ -5,46 +5,48 @@
 
 .input {
   width: 100%;
-  padding: 0.875rem 3rem 0.875rem 1rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
+  padding: 1rem 3.5rem 1rem 1.25rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
   font-size: 1rem;
   transition: all 0.2s;
   background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #1a237e;
+  box-shadow: 0 4px 12px rgba(26, 35, 126, 0.12);
 }
 
 .clearButton {
   position: absolute;
-  right: 0.75rem;
+  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  background: #e5e7eb;
+  background: #e0e0e0;
   border: none;
   border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
-  font-size: 0.75rem;
-  color: #6b7280;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+  color: #757575;
 }
 
 .clearButton:hover {
-  background: #d1d5db;
+  background: #bdbdbd;
+  color: #424242;
 }
 
 @media (max-width: 768px) {
   .input {
     font-size: 0.95rem;
-    padding: 0.75rem 2.5rem 0.75rem 0.875rem;
+    padding: 0.875rem 3rem 0.875rem 1rem;
   }
 }
