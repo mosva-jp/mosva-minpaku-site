@@ -16,8 +16,8 @@
 
 .input:focus {
   outline: none;
-  border-color: #1a237e;
-  box-shadow: 0 4px 12px rgba(26, 35, 126, 0.12);
+  border-color: #1C613A;
+  box-shadow: 0 4px 12px rgba(28, 97, 58, 0.12);
 }
 
 .clearButton {

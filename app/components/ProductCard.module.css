@@ -11,9 +11,9 @@
 }
 
 .card:hover {
-  box-shadow: 0 8px 24px rgba(26, 35, 126, 0.12);
+  box-shadow: 0 8px 24px rgba(28, 97, 58, 0.15);
   transform: translateY(-4px);
-  border-color: #1a237e;
+  border-color: #1C613A;
 }
 
 .imageContainer {
@@ -54,8 +54,8 @@
 .category {
   display: inline-block;
   padding: 0.35rem 0.85rem;
-  background: #e8eaf6;
-  color: #1a237e;
+  background: #e8f5e9;
+  color: #1C613A;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -92,7 +92,7 @@
   display: block;
   width: 100%;
   padding: 0.85rem 1rem;
-  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  background: linear-gradient(135deg, #1C613A 0%, #2a8048 100%);
   color: white;
   text-align: center;
   border-radius: 8px;
@@ -105,9 +105,9 @@
 }
 
 .button:hover {
-  background: linear-gradient(135deg, #0d1754 0%, #1a237e 100%);
+  background: linear-gradient(135deg, #154d2d 0%, #1C613A 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+  box-shadow: 0 4px 12px rgba(28, 97, 58, 0.3);
 }
 
 @media (max-width: 768px) {
