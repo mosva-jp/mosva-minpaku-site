@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.results {
+  margin-bottom: 1.5rem;
+}
+
+.resultCount {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.noResults {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #6b7280;
+}
+
+.noResults p {
+  font-size: 1.1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+}
