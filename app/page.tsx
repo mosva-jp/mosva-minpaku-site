@@ -1,6 +1,7 @@
 import ProductList from './components/ProductList';
 import ScrollHeader from './components/ScrollHeader';
 import Header from './components/Header';
+import ShareButtons from './components/ShareButtons';
 import { getProducts, getCategories } from '@/lib/notion';
 import styles from './page.module.css';
 
@@ -30,6 +31,11 @@ export default async function Home() {
           <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer" className={styles.footerLogo}>
             <span className={styles.footerLogoText}>MOSVA</span>
           </a>
+          
+          <div className={styles.shareSection}>
+            <h3>このサイトを共有</h3>
+            <ShareButtons />
+          </div>
           
           <div className={styles.footerGrid}>
             <div className={styles.footerSection}>

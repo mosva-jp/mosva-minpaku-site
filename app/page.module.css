@@ -170,3 +170,16 @@
     grid-template-columns: 1fr;
   }
 }
+
+.shareSection {
+  padding: 2rem 0;
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.shareSection h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
