@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Product } from '@/lib/notion';
+import { useShoppingList } from './ShoppingListContext';
 import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
@@ -10,10 +11,12 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
+  const { addItem, removeItem, isInList } = useShoppingList();
+  const inList = isInList(product.id);
 
   const handleCardClick = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
-    if (!target.closest('a')) {
+    if (!target.closest('a') && !target.closest('button')) {
       setShowModal(true);
     }
   };
@@ -25,6 +28,15 @@ export default function ProductCard({ product }: ProductCardProps) {
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       setShowModal(false);
+    }
+  };
+
+  const handleToggleList = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (inList) {
+      removeItem(product.id);
+    } else {
+      addItem(product);
     }
   };
 
@@ -44,6 +56,15 @@ export default function ProductCard({ product }: ProductCardProps) {
               className: styles.image,
             })
           : React.createElement('div', { className: styles.noImage }, '画像なし')
+      ),
+      React.createElement(
+        'button',
+        {
+          className: `${styles.listButton} ${inList ? styles.listButtonActive : ''}`,
+          onClick: handleToggleList,
+          title: inList ? 'リストから削除' : 'リストに追加',
+        },
+        inList ? '✓' : '+'
       )
     ),
     React.createElement(
@@ -126,17 +147,29 @@ export default function ProductCard({ product }: ProductCardProps) {
                     `¥${product.price.toLocaleString()}`
                   )
                 ),
-              product.amazonUrl &&
+              React.createElement(
+                'div',
+                { className: styles.modalButtons },
                 React.createElement(
-                  'a',
+                  'button',
                   {
-                    href: product.amazonUrl,
-                    target: '_blank',
-                    rel: 'noopener noreferrer',
-                    className: styles.amazonButton,
+                    className: `${styles.modalListButton} ${inList ? styles.modalListButtonActive : ''}`,
+                    onClick: handleToggleList,
                   },
-                  'Amazonで見る'
-                )
+                  inList ? 'リストから削除' : 'リストに追加'
+                ),
+                product.amazonUrl &&
+                  React.createElement(
+                    'a',
+                    {
+                      href: product.amazonUrl,
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                      className: styles.amazonButton,
+                    },
+                    'Amazonで見る'
+                  )
+              )
             )
           )
         )

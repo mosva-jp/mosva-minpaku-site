@@ -319,3 +319,73 @@
     font-size: 1.75rem;
   }
 }
+
+.listButton {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #1C613A;
+  border-radius: 50%;
+  color: #1C613A;
+  font-size: 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.listButton:hover {
+  background: #1C613A;
+  color: white;
+  transform: scale(1.1);
+}
+
+.listButtonActive {
+  background: #1C613A;
+  color: white;
+}
+
+.listButtonActive:hover {
+  background: #154d2d;
+}
+
+.modalButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.modalListButton {
+  width: 100%;
+  padding: 0.875rem;
+  background: #ffffff;
+  border: 2px solid #1C613A;
+  color: #1C613A;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modalListButton:hover {
+  background: #f1f8f4;
+}
+
+.modalListButtonActive {
+  background: #1C613A;
+  color: white;
+}
+
+.modalListButtonActive:hover {
+  background: #154d2d;
+}
