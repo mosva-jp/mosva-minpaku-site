@@ -1,26 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
 import CategoryFilter from './CategoryFilter';
-import { Product, getProducts, getCategories, filterProducts } from '@/lib/notion';
+import { Product, filterProducts } from '@/lib/notion';
 import styles from './ProductList.module.css';
 
-export default function ProductList() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
+interface ProductListProps {
+  products: Product[];
+  categories: string[];
+}
+
+export default function ProductList({ products, categories }: ProductListProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('全て');
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  useEffect(() => {
-    async function fetchProducts() {
-      const data = await getProducts();
-      setProducts(data);
-      setCategories(getCategories(data));
-    }
-    fetchProducts();
-  }, []);
 
   const filteredProducts = filterProducts(products, selectedCategory, searchQuery);
 
@@ -35,19 +29,21 @@ export default function ProductList() {
         />
       </div>
 
-      <div className={styles.results}>
-        <p className={styles.resultCount}>{filteredProducts.length}件の商品が見つかりました</p>
-      </div>
-
       {filteredProducts.length === 0 ? (
         <div className={styles.noResults}>
           <p>該当する商品が見つかりませんでした</p>
         </div>
       ) : (
-        <div className={styles.grid}>
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className={styles.categorySection}>
+          <h2 className={styles.categoryTitle}>
+            {selectedCategory === '全て' ? 'すべての商品' : selectedCategory}
+            <span className={styles.count}>{filteredProducts.length}件</span>
+          </h2>
+          <div className={styles.grid}>
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         </div>
       )}
     </div>

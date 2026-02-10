@@ -1,7 +1,13 @@
 import ProductList from './components/ProductList';
+import { getProducts, getCategories } from '@/lib/notion';
 import styles from './page.module.css';
 
-export default function Home() {
+export const revalidate = 3600;
+
+export default async function Home() {
+  const products = await getProducts();
+  const categories = getCategories(products);
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -9,46 +15,43 @@ export default function Home() {
           <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer" className={styles.logo}>
             <img src="/mosva-logo.png" alt="MOSVA" className={styles.logoImage} />
           </a>
-          <h1 className={styles.title}>民泊備品・消耗品まとめ</h1>
+          <nav className={styles.nav}>
+            <span className={styles.navItem}>備品カタログ</span>
+          </nav>
         </div>
       </header>
 
       <main className={styles.main}>
         <div className={styles.hero}>
-          <h2 className={styles.heroTitle}>必要な備品がすぐ見つかる</h2>
-          <p className={styles.heroSubtitle}>民泊運営に必要な備品・消耗品をカテゴリ別にご紹介</p>
+          <h1 className={styles.heroTitle}>民泊備品・消耗品まとめ</h1>
+          <p className={styles.heroSubtitle}>必要な備品がすぐ見つかる</p>
         </div>
-        <ProductList />
+        <ProductList products={products} categories={categories} />
       </main>
 
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <div className={styles.footerBrand}>
-            <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer">
-              <img src="/mosva-logo.png" alt="MOSVA" className={styles.footerLogo} />
-            </a>
-            <p className={styles.footerDescription}>コンシェルジュ付き民泊運営会社</p>
-          </div>
+          <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer">
+            <img src="/mosva-logo.png" alt="MOSVA" className={styles.footerLogo} />
+          </a>
           
-          <div className={styles.footerLinks}>
+          <div className={styles.footerGrid}>
             <div className={styles.footerSection}>
-              <h3>会社情報</h3>
-              <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer">コーポレートサイト</a>
+              <h3>サービス</h3>
+              <a href="https://mosva.jp/autominpaku" target="_blank" rel="noopener noreferrer">民泊運営代行</a>
+              <a href="https://mosva.jp/omotenasi-chat" target="_blank" rel="noopener noreferrer">チャット代行</a>
+              <a href="https://mosva.jp/mosvaclean" target="_blank" rel="noopener noreferrer">民泊清掃</a>
             </div>
             
             <div className={styles.footerSection}>
-              <h3>サービス</h3>
-              <p>民泊運営代行</p>
-              <p>清掃サービス</p>
+              <h3>&nbsp;</h3>
+              <a href="https://mosva.jp/minpaku-kaketsuke" target="_blank" rel="noopener noreferrer">駆けつけ代行</a>
+              <a href="https://mosva.jp/design" target="_blank" rel="noopener noreferrer">民泊空間デザイン</a>
+              <a href="https://mosva.jp/minpaku-kanri" target="_blank" rel="noopener noreferrer">住宅宿泊管理</a>
             </div>
           </div>
-        </div>
-        
-        <div className={styles.footerBottom}>
-          <p>© 2026 株式会社MOSVA. All rights reserved.</p>
-          <p className={styles.disclaimer}>
-            ※ 商品価格・在庫状況は変動する場合があります。最新情報はリンク先でご確認ください。
-          </p>
+          
+          <p className={styles.copyright}>© 2026 株式会社MOSVA. All rights reserved.</p>
         </div>
       </footer>
     </div>
