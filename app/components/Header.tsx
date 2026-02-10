@@ -88,7 +88,6 @@ export default function Header() {
             )
           )
         ),
-        React.createElement('span', { className: styles.navItem }, '備品カタログ'),
         React.createElement(
           'button',
           {
