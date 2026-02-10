@@ -1,55 +1,52 @@
 .container {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.container::-webkit-scrollbar {
-  display: none;
-}
-
-.buttonGroup {
-  display: inline-flex;
+  display: flex;
   gap: 0.75rem;
-  padding: 0.25rem 0;
-  min-width: 100%;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
 }
 
-.button {
-  flex-shrink: 0;
+.categoryButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.625rem 1.25rem;
-  border: 1px solid #d0d0d0;
-  border-radius: 20px;
   background: #ffffff;
-  color: #2c3e50;
-  font-size: 0.875rem;
+  border: 2px solid #e8e8e8;
+  border-radius: 24px;
+  font-size: 0.9375rem;
   font-weight: 500;
+  color: #2c3e50;
   cursor: pointer;
   transition: all 0.2s ease;
-  white-space: nowrap;
 }
 
-.button:hover {
+.categoryButton:hover {
   border-color: #1C613A;
-  background: #f1f8f4;
+  background: #f8f9fa;
 }
 
-.button.active {
+.categoryButton.active {
   background: #1C613A;
   border-color: #1C613A;
-  color: #ffffff;
+  color: white;
 }
 
-.button.active:hover {
-  background: #154d2d;
-  border-color: #154d2d;
+.icon {
+  font-size: 1.125rem;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {
-  .button {
+  .container {
+    gap: 0.5rem;
+  }
+
+  .categoryButton {
     padding: 0.5rem 1rem;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
+  }
+
+  .icon {
+    font-size: 1rem;
   }
 }

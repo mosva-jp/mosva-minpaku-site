@@ -8,6 +8,16 @@ interface CategoryFilterProps {
   setSelectedCategory: (category: string) => void;
 }
 
+const categoryIcons: Record<string, string> = {
+  'キッチン': '🍳',
+  'トイレ': '🚽',
+  'バス': '🛁',
+  'ランドリー': '🧺',
+  '害虫対策': '🐛',
+  '寝具・リネン': '🛏️',
+  'その他': '📦',
+};
+
 export default function CategoryFilter({
   categories,
   selectedCategory,
@@ -17,17 +27,20 @@ export default function CategoryFilter({
 
   return (
     <div className={styles.container}>
-      <div className={styles.buttonGroup}>
-        {allCategories.map((category) => (
-          <button
-            key={category}
-            className={`${styles.button} ${selectedCategory === category ? styles.active : ''}`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+      {allCategories.map((category) => (
+        <button
+          key={category}
+          className={`${styles.categoryButton} ${
+            selectedCategory === category ? styles.active : ''
+          }`}
+          onClick={() => setSelectedCategory(category)}
+        >
+          {categoryIcons[category] && (
+            <span className={styles.icon}>{categoryIcons[category]}</span>
+          )}
+          <span>{category}</span>
+        </button>
+      ))}
     </div>
   );
 }
