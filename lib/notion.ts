@@ -43,14 +43,12 @@ export async function getProducts(): Promise<Product[]> {
 export function getCategories(products: Product[]): string[] {
   const categories = Array.from(new Set(products.map((p) => p.category)));
   
-  // カテゴリーの順番を指定（その他を最後に）
   const order = ['キッチン', 'トイレ', 'バス', 'ランドリー', '害虫対策', '寝具・リネン', 'その他'];
   
   return categories.sort((a, b) => {
     const indexA = order.indexOf(a);
     const indexB = order.indexOf(b);
     
-    // orderにない場合は最後に
     if (indexA === -1) return 1;
     if (indexB === -1) return -1;
     

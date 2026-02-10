@@ -8,6 +8,7 @@ import styles from './Header.module.css';
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showServicesMenu, setShowServicesMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { items } = useShoppingList();
 
@@ -35,6 +36,18 @@ export default function Header() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showServicesMenu]);
+
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showMobileMenu]);
 
   return React.createElement(
     React.Fragment,
@@ -102,6 +115,54 @@ export default function Header() {
               { className: styles.cartBadge },
               items.length
             )
+        )
+      ),
+      React.createElement(
+        'button',
+        {
+          className: styles.hamburger,
+          onClick: () => setShowMobileMenu(!showMobileMenu),
+        },
+        React.createElement('span', { className: styles.hamburgerLine }),
+        React.createElement('span', { className: styles.hamburgerLine }),
+        React.createElement('span', { className: styles.hamburgerLine })
+      )
+    ),
+    showMobileMenu && React.createElement(
+      'div',
+      { className: styles.mobileMenuOverlay, onClick: () => setShowMobileMenu(false) }
+    ),
+    showMobileMenu && React.createElement(
+      'div',
+      { className: styles.mobileMenu },
+      React.createElement(
+        'div',
+        { className: styles.mobileMenuHeader },
+        React.createElement('h3', null, 'メニュー'),
+        React.createElement(
+          'button',
+          { className: styles.mobileMenuClose, onClick: () => setShowMobileMenu(false) },
+          '✕'
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: styles.mobileMenuContent },
+        React.createElement('h4', { className: styles.mobileMenuSection }, 'サービス一覧'),
+        services.map((service) =>
+          React.createElement(
+            'a',
+            {
+              key: service.name,
+              href: service.url,
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: styles.mobileMenuItem,
+              onClick: () => setShowMobileMenu(false),
+            },
+            React.createElement('span', { className: styles.mobileItemName }, service.name),
+            React.createElement('span', { className: styles.mobileItemDesc }, service.description)
+          )
         )
       )
     ),
