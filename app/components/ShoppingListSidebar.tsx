@@ -32,10 +32,9 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
       return;
     }
     
-    itemsWithLinks.forEach((item, index) => {
-      setTimeout(() => {
-        window.open(item.amazonUrl, '_blank');
-      }, index * 500);
+    // 即座に全てのウィンドウを開く（ポップアップブロック回避）
+    itemsWithLinks.forEach((item) => {
+      window.open(item.amazonUrl, '_blank');
     });
   };
 
