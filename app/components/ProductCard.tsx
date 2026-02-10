@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Product } from '@/lib/notion';
 import { useShoppingList } from './ShoppingListContext';
 import styles from './ProductCard.module.css';
@@ -13,6 +13,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [dragStart, setDragStart] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const modalRef = useRef<HTMLDivElement>(null);
   const { addItem, removeItem, isInList } = useShoppingList();
   const inList = isInList(product.id);
 
@@ -25,6 +28,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setDragOffset(0);
   };
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -43,6 +47,44 @@ export default function ProductCard({ product }: ProductCardProps) {
       setTimeout(() => setIsAdding(false), 600);
     }
   };
+
+  // スワイプ機能
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest(`.${styles.modalHandle}`)) {
+      setDragStart(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (dragStart !== null) {
+      const currentY = e.touches[0].clientY;
+      const offset = currentY - dragStart;
+      if (offset > 0) {
+        setDragOffset(offset);
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (dragOffset > 100) {
+      handleCloseModal();
+    } else {
+      setDragOffset(0);
+    }
+    setDragStart(null);
+  };
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showModal]);
 
   const buttonClass = `${styles.listButton} ${inList ? styles.listButtonActive : ''} ${isAdding ? styles.adding : ''}`;
 
@@ -115,7 +157,15 @@ export default function ProductCard({ product }: ProductCardProps) {
         { className: styles.modalOverlay, onClick: handleOverlayClick },
         React.createElement(
           'div',
-          { className: styles.modal },
+          {
+            ref: modalRef,
+            className: styles.modal,
+            style: { transform: `translateY(${dragOffset}px)`, transition: dragStart ? 'none' : 'transform 0.3s ease' },
+            onTouchStart: handleTouchStart,
+            onTouchMove: handleTouchMove,
+            onTouchEnd: handleTouchEnd,
+          },
+          React.createElement('div', { className: styles.modalHandle }),
           React.createElement(
             'button',
             { className: styles.closeButton, onClick: handleCloseModal },
