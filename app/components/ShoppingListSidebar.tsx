@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { useShoppingList } from './ShoppingListContext';
+import AnimatedPrice from './AnimatedPrice';
 import styles from './ShoppingListSidebar.module.css';
 
 interface ShoppingListSidebarProps {
@@ -107,11 +108,10 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
                   'div',
                   { className: styles.total },
                   React.createElement('span', null, '合計金額'),
-                  React.createElement(
-                    'span',
-                    { className: styles.totalPrice },
-                    `¥${getTotalPrice().toLocaleString()}`
-                  )
+                  React.createElement(AnimatedPrice, {
+                    value: getTotalPrice(),
+                    className: styles.totalPrice,
+                  })
                 ),
                 React.createElement(
                   'button',
