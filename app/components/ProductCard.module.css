@@ -244,36 +244,52 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   z-index: 1000;
-  padding: 1rem;
+  padding: 0;
   animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal {
   background: white;
-  border-radius: 16px;
-  max-width: 800px;
+  border-radius: 20px 20px 0 0;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  animation: slideUpModal 0.3s ease;
+  touch-action: pan-y;
 }
 
-@keyframes slideUp {
+@keyframes slideUpModal {
   from {
-    opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(100%);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
+}
+
+.modalHandle {
+  width: 40px;
+  height: 4px;
+  background: #d0d0d0;
+  border-radius: 2px;
+  margin: 12px auto 8px;
+  cursor: grab;
 }
 
 .closeButton {
@@ -304,10 +320,10 @@
 }
 
 .modalContent {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
 .modalImage {
@@ -316,12 +332,13 @@
   justify-content: center;
   background: #ffffff;
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.5rem;
+  min-height: 200px;
 }
 
 .modalImage img {
   max-width: 100%;
-  max-height: 400px;
+  max-height: 300px;
   object-fit: contain;
 }
 
@@ -346,7 +363,7 @@
 }
 
 .modalPriceContainer {
-  margin-top: auto;
+  margin-top: 1rem;
 }
 
 .modalPrice {
@@ -361,6 +378,7 @@
   flex-direction: column;
   gap: 0.75rem;
   margin-top: 1rem;
+  padding-bottom: env(safe-area-inset-bottom, 1rem);
 }
 
 .modalListButton {
@@ -408,24 +426,47 @@
   box-shadow: 0 4px 12px rgba(28, 97, 58, 0.3);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
+  .modalOverlay {
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .modal {
+    border-radius: 16px;
+    max-width: 800px;
+    max-height: 90vh;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modalHandle {
+    display: none;
+  }
+
   .modalContent {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
   }
 
   .modalImage {
-    padding: 1.5rem;
+    padding: 2rem;
   }
 
   .modalImage img {
-    max-height: 250px;
-  }
-
-  .closeButton {
-    top: 0.75rem;
-    right: 0.75rem;
+    max-height: 400px;
   }
 }
 
