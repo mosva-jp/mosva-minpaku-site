@@ -1,7 +1,6 @@
 import ProductList from './components/ProductList';
 import { getProducts, getCategories } from '@/lib/notion';
 import styles from './page.module.css';
-import Image from 'next/image';
 
 export const revalidate = 3600;
 
@@ -14,7 +13,7 @@ export default async function Home() {
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer" className={styles.logo}>
-            <Image src="/mosva-logo.png" alt="MOSVA" width={120} height={32} className={styles.logoImage} />
+            <span className={styles.logoText}>MOSVA</span>
           </a>
           <nav className={styles.nav}>
             <span className={styles.navItem}>備品カタログ</span>
@@ -32,8 +31,8 @@ export default async function Home() {
 
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer">
-            <Image src="/mosva-logo.png" alt="MOSVA" width={120} height={32} className={styles.footerLogo} />
+          <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer" className={styles.footerLogo}>
+            <span className={styles.footerLogoText}>MOSVA</span>
           </a>
           
           <div className={styles.footerGrid}>

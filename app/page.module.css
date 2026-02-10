@@ -28,9 +28,11 @@
   align-items: center;
 }
 
-.logoImage {
-  height: 32px;
-  width: auto;
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1C613A;
+  letter-spacing: 0.5px;
 }
 
 .nav {
@@ -88,8 +90,14 @@
 }
 
 .footerLogo {
-  height: 32px;
-  width: auto;
+  display: block;
+}
+
+.footerLogoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1C613A;
+  letter-spacing: 0.5px;
 }
 
 .footerGrid {
@@ -129,8 +137,8 @@
     padding: 1rem 1.5rem;
   }
 
-  .logoImage {
-    height: 28px;
+  .logoText {
+    font-size: 1.25rem;
   }
 
   .nav {
