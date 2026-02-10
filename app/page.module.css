@@ -2,27 +2,22 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #141414;
+  background: #ffffff;
 }
 
 .header {
-  position: fixed;
+  background: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 1.25rem 3rem;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.7) 10%, transparent);
-  padding: 1.5rem 3.5rem;
   z-index: 100;
-  transition: background 0.3s ease;
-}
-
-.header:hover,
-.header.scrolled {
-  background: #141414;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .headerContent {
-  max-width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,61 +29,59 @@
 }
 
 .logoImage {
-  height: 28px;
+  height: 32px;
   width: auto;
 }
 
 .nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: center;
 }
 
 .navItem {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: #e5e5e5;
+  color: #2c3e50;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.navItem:hover {
-  color: #b3b3b3;
 }
 
 .main {
   flex: 1;
   width: 100%;
-  padding-top: 70px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem;
 }
 
 .hero {
-  padding: 4rem 3.5rem 2rem;
-  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+  margin-bottom: 3rem;
 }
 
 .heroTitle {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
 }
 
 .heroSubtitle {
-  font-size: 1.25rem;
-  color: #b3b3b3;
+  font-size: 1.125rem;
+  color: #7f8c8d;
   font-weight: 400;
 }
 
 .footer {
-  background: #000000;
-  padding: 3rem 3.5rem;
-  margin-top: 4rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e8e8e8;
+  padding: 3rem;
+  margin-top: 5rem;
 }
 
 .footerContent {
-  max-width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -97,44 +90,38 @@
 .footerLogo {
   height: 32px;
   width: auto;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.footerLogo:hover {
-  opacity: 1;
 }
 
 .footerGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
 }
 
 .footerSection h3 {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #808080;
+  color: #2c3e50;
   margin-bottom: 1rem;
 }
 
 .footerSection a {
   display: block;
   font-size: 0.875rem;
-  color: #808080;
+  color: #7f8c8d;
   margin-bottom: 0.75rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .footerSection a:hover {
-  color: #ffffff;
+  color: #1C613A;
 }
 
 .copyright {
-  font-size: 0.75rem;
-  color: #808080;
+  font-size: 0.8125rem;
+  color: #95a5a6;
   padding-top: 1.5rem;
-  border-top: 1px solid #2f2f2f;
+  border-top: 1px solid #e8e8e8;
 }
 
 @media (max-width: 768px) {
@@ -143,23 +130,19 @@
   }
 
   .logoImage {
-    height: 24px;
+    height: 28px;
   }
 
   .nav {
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .navItem {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   .main {
-    padding-top: 60px;
-  }
-
-  .hero {
-    padding: 3rem 1.5rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .heroTitle {
@@ -176,6 +159,5 @@
 
   .footerGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 }

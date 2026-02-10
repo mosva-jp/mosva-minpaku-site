@@ -19,32 +19,32 @@
 
 .button {
   flex-shrink: 0;
-  padding: 0.5rem 1.25rem;
-  border: 1px solid #333333;
-  border-radius: 4px;
-  background: transparent;
-  color: #e5e5e5;
+  padding: 0.625rem 1.25rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 20px;
+  background: #ffffff;
+  color: #2c3e50;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .button:hover {
-  border-color: #808080;
-  background: #2f2f2f;
+  border-color: #1C613A;
+  background: #f1f8f4;
 }
 
 .button.active {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #000000;
+  background: #1C613A;
+  border-color: #1C613A;
+  color: #ffffff;
 }
 
 .button.active:hover {
-  background: #e5e5e5;
-  border-color: #e5e5e5;
+  background: #154d2d;
+  border-color: #154d2d;
 }
 
 @media (max-width: 768px) {
