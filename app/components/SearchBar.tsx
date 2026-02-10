@@ -4,24 +4,25 @@ import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   searchQuery: string;
-  onSearchChange: (query: string) => void;
+  setSearchQuery: (query: string) => void;
 }
 
-export default function SearchBar({ searchQuery, onSearchChange }: SearchBarProps) {
+export default function SearchBar({ searchQuery, setSearchQuery }: SearchBarProps) {
   return (
     <div className={styles.container}>
+      <span className={styles.searchIcon}>🔍</span>
       <input
         type="text"
         placeholder="商品名、カテゴリで検索..."
-        value={searchQuery}
-        onChange={(e) => onSearchChange(e.target.value)}
         className={styles.input}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
       {searchQuery && (
         <button
-          onClick={() => onSearchChange('')}
           className={styles.clearButton}
-          aria-label="検索をクリア"
+          onClick={() => setSearchQuery('')}
+          aria-label="クリア"
         >
           ✕
         </button>

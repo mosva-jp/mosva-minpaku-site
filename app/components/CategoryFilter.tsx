@@ -5,13 +5,13 @@ import styles from './CategoryFilter.module.css';
 interface CategoryFilterProps {
   categories: string[];
   selectedCategory: string;
-  onCategoryChange: (category: string) => void;
+  setSelectedCategory: (category: string) => void;
 }
 
 export default function CategoryFilter({
   categories,
   selectedCategory,
-  onCategoryChange,
+  setSelectedCategory,
 }: CategoryFilterProps) {
   const allCategories = ['全て', ...categories];
 
@@ -21,10 +21,8 @@ export default function CategoryFilter({
         {allCategories.map((category) => (
           <button
             key={category}
-            onClick={() => onCategoryChange(category)}
-            className={`${styles.button} ${
-              selectedCategory === category ? styles.active : ''
-            }`}
+            className={`${styles.button} ${selectedCategory === category ? styles.active : ''}`}
+            onClick={() => setSelectedCategory(category)}
           >
             {category}
           </button>
