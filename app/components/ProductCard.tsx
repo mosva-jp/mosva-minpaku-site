@@ -11,9 +11,17 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <div className={styles.card} onClick={() => setShowModal(true)}>
+      <div className={styles.card} onClick={handleOpenModal}>
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
             {product.imageUrl ? (
@@ -40,10 +48,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
 
-      {showModal && (
-        <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
+      {showModal ? (
+        <div className={styles.modalOverlay} onClick={handleCloseModal}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={() => setShowModal(false)}>
+            <button className={styles.closeButton} onClick={handleCloseModal}>
               ✕
             </button>
             
@@ -85,7 +93,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 }
