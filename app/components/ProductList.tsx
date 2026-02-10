@@ -33,7 +33,11 @@ export default function ProductList({ products, categories }: ProductListProps) 
   return (
     <div className={styles.container}>
       <div className={styles.controls}>
-        <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearchChange} />
+        <SearchBar 
+          searchQuery={searchQuery} 
+          setSearchQuery={handleSearchChange}
+          allProducts={products}
+        />
         <CategoryFilter
           categories={categories}
           selectedCategory={selectedCategory}
