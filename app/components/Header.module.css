@@ -300,30 +300,6 @@
   }
 
   .cartButton {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    padding: 1rem;
-    border-radius: 50%;
-    min-width: 56px;
-    min-height: 56px;
-    width: 56px;
-    height: 56px;
-    justify-content: center;
-    z-index: 998;
-    box-shadow: 0 4px 16px rgba(28, 97, 58, 0.3);
-  }
-
-  .cartText {
     display: none;
-  }
-
-  .cartIcon {
-    font-size: 1.5rem;
-  }
-
-  .cartBadge {
-    top: -0.25rem;
-    right: -0.25rem;
   }
 }

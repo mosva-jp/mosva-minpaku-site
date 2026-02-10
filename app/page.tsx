@@ -3,6 +3,7 @@ import ScrollHeader from './components/ScrollHeader';
 import Header from './components/Header';
 import ShareButtons from './components/ShareButtons';
 import ScrollToTop from './components/ScrollToTop';
+import BottomNavigation from './components/BottomNavigation';
 import { getProducts, getCategories } from '@/lib/notion';
 import styles from './page.module.css';
 
@@ -16,6 +17,7 @@ export default async function Home() {
     <div className={styles.container}>
       <ScrollHeader />
       <ScrollToTop />
+      <BottomNavigation />
       <header className={styles.header} id="header">
         <Header />
       </header>
