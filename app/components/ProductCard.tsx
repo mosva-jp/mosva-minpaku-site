@@ -12,6 +12,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const { addItem, removeItem, isInList } = useShoppingList();
   const inList = isInList(product.id);
 
@@ -59,6 +60,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               src: product.imageUrl,
               alt: product.name,
               className: styles.image,
+              loading: 'lazy',
+              onLoad: () => setImageLoaded(true),
+              style: { opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' },
             })
           : React.createElement('div', { className: styles.noImage }, '画像なし')
       ),
@@ -127,6 +131,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 ? React.createElement('img', {
                     src: product.imageUrl,
                     alt: product.name,
+                    loading: 'lazy',
                   })
                 : React.createElement('div', { className: styles.noImage }, '画像なし')
             ),
