@@ -24,32 +24,7 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
     };
   }, [isOpen]);
 
-  const handleBuyAll = () => {
-    const itemsWithLinks = items.filter(item => item.amazonUrl);
-    
-    if (itemsWithLinks.length === 0) {
-      alert('Amazonリンクのある商品がありません');
-      return;
-    }
-    
-    // 即座に全てのウィンドウを開く（ポップアップブロック回避）
-    itemsWithLinks.forEach((item) => {
-      window.open(item.amazonUrl, '_blank');
-    });
-  };
-
-  const handleItemClick = (amazonUrl?: string) => {
-    if (amazonUrl) {
-      window.open(amazonUrl, '_blank');
-    } else {
-      alert('この商品にはAmazonリンクが設定されていません');
-    }
-  };
-
   if (!isOpen) return null;
-
-  const itemsWithLinks = items.filter(item => item.amazonUrl).length;
-  const itemsWithoutLinks = items.length - itemsWithLinks;
 
   return React.createElement(
     React.Fragment,
@@ -90,30 +65,37 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
                     { key: item.id, className: styles.item },
                     React.createElement(
                       'div',
-                      { className: styles.itemInfo },
+                      { className: styles.itemContent },
                       React.createElement(
-                        'h3',
-                        {
-                          className: styles.itemName,
-                          onClick: () => handleItemClick(item.amazonUrl),
-                        },
-                        item.name
+                        'div',
+                        { className: styles.itemInfo },
+                        React.createElement('h3', { className: styles.itemName }, item.name),
+                        React.createElement('span', { className: styles.itemCategory }, item.category),
+                        item.price &&
+                          React.createElement(
+                            'p',
+                            { className: styles.itemPrice },
+                            `¥${item.price.toLocaleString()}`
+                          )
                       ),
-                      React.createElement('span', { className: styles.itemCategory }, item.category),
-                      item.price &&
-                        React.createElement(
-                          'p',
-                          { className: styles.itemPrice },
-                          `¥${item.price.toLocaleString()}`
-                        )
+                      React.createElement(
+                        'button',
+                        {
+                          className: styles.removeButton,
+                          onClick: () => removeItem(item.id),
+                        },
+                        '削除'
+                      )
                     ),
-                    React.createElement(
-                      'button',
+                    item.amazonUrl && React.createElement(
+                      'a',
                       {
-                        className: styles.removeButton,
-                        onClick: () => removeItem(item.id),
+                        href: item.amazonUrl,
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                        className: styles.buyButton,
                       },
-                      '削除'
+                      'Amazonで購入'
                     )
                   )
                 )
@@ -131,29 +113,10 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
                     `¥${getTotalPrice().toLocaleString()}`
                   )
                 ),
-                itemsWithoutLinks > 0 &&
-                  React.createElement(
-                    'p',
-                    { className: styles.warningText },
-                    `※ ${itemsWithoutLinks}件の商品にはAmazonリンクがありません`
-                  ),
                 React.createElement(
-                  'div',
-                  { className: styles.actions },
-                  React.createElement(
-                    'button',
-                    { 
-                      className: styles.buyAllButton, 
-                      onClick: handleBuyAll,
-                      disabled: itemsWithLinks === 0
-                    },
-                    `🛒 まとめて購入する (${itemsWithLinks}件)`
-                  ),
-                  React.createElement(
-                    'button',
-                    { className: styles.clearButton, onClick: clearList },
-                    'リストをクリア'
-                  )
+                  'button',
+                  { className: styles.clearButton, onClick: clearList },
+                  'リストをクリア'
                 )
               )
             )
