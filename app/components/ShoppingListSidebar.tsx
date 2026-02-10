@@ -13,22 +13,32 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
   const { items, removeItem, clearList, getTotalPrice } = useShoppingList();
 
   const handleBuyAll = () => {
-    items.forEach((item, index) => {
-      if (item.amazonUrl) {
-        setTimeout(() => {
-          window.open(item.amazonUrl, '_blank');
-        }, index * 500);
-      }
+    const itemsWithLinks = items.filter(item => item.amazonUrl);
+    
+    if (itemsWithLinks.length === 0) {
+      alert('Amazonリンクのある商品がありません');
+      return;
+    }
+    
+    itemsWithLinks.forEach((item, index) => {
+      setTimeout(() => {
+        window.open(item.amazonUrl, '_blank');
+      }, index * 500);
     });
   };
 
   const handleItemClick = (amazonUrl?: string) => {
     if (amazonUrl) {
       window.open(amazonUrl, '_blank');
+    } else {
+      alert('この商品にはAmazonリンクが設定されていません');
     }
   };
 
   if (!isOpen) return null;
+
+  const itemsWithLinks = items.filter(item => item.amazonUrl).length;
+  const itemsWithoutLinks = items.length - itemsWithLinks;
 
   return React.createElement(
     React.Fragment,
@@ -110,13 +120,23 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
                     `¥${getTotalPrice().toLocaleString()}`
                   )
                 ),
+                itemsWithoutLinks > 0 &&
+                  React.createElement(
+                    'p',
+                    { className: styles.warningText },
+                    `※ ${itemsWithoutLinks}件の商品にはAmazonリンクがありません`
+                  ),
                 React.createElement(
                   'div',
                   { className: styles.actions },
                   React.createElement(
                     'button',
-                    { className: styles.buyAllButton, onClick: handleBuyAll },
-                    '🛒 まとめて購入する'
+                    { 
+                      className: styles.buyAllButton, 
+                      onClick: handleBuyAll,
+                      disabled: itemsWithLinks === 0
+                    },
+                    `🛒 まとめて購入する (${itemsWithLinks}件)`
                   ),
                   React.createElement(
                     'button',
