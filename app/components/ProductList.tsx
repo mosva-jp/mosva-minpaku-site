@@ -5,6 +5,7 @@ import ProductCard from './ProductCard';
 import ProductCardSkeleton from './ProductCardSkeleton';
 import SearchBar from './SearchBar';
 import CategoryFilter from './CategoryFilter';
+import EmptyState from './EmptyState';
 import { Product, filterProducts } from '@/lib/notion';
 import styles from './ProductList.module.css';
 
@@ -30,6 +31,11 @@ export default function ProductList({ products, categories }: ProductListProps) 
     setSearchQuery(query);
   };
 
+  const handleReset = () => {
+    setSearchQuery('');
+    setSelectedCategory('全て');
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.controls}>
@@ -45,7 +51,7 @@ export default function ProductList({ products, categories }: ProductListProps) 
         />
       </div>
 
-      {!isLoading && (
+      {!isLoading && filteredProducts.length > 0 && (
         <div className={styles.categorySection}>
           <h2 className={styles.categoryTitle}>
             {selectedCategory === '全て' ? 'すべての商品' : selectedCategory}
@@ -61,9 +67,11 @@ export default function ProductList({ products, categories }: ProductListProps) 
           ))}
         </div>
       ) : filteredProducts.length === 0 ? (
-        <div className={styles.noResults}>
-          <p>該当する商品が見つかりませんでした</p>
-        </div>
+        <EmptyState
+          searchQuery={searchQuery}
+          selectedCategory={selectedCategory}
+          onReset={handleReset}
+        />
       ) : (
         <div className={styles.grid}>
           {filteredProducts.map((product) => (
