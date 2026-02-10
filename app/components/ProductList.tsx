@@ -1,60 +1,42 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { Product } from '@/lib/notion';
+import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import SearchBar from './SearchBar';
 import CategoryFilter from './CategoryFilter';
+import { Product, getProducts, getCategories, filterProducts } from '@/lib/notion';
 import styles from './ProductList.module.css';
 
-interface ProductListProps {
-  products: Product[];
-  categories: string[];
-}
-
-export default function ProductList({ products, categories }: ProductListProps) {
+export default function ProductList() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('全て');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const filteredProducts = useMemo(() => {
-    let filtered = products;
-
-    // カテゴリフィルター
-    if (selectedCategory !== '全て') {
-      filtered = filtered.filter(p => p.category === selectedCategory);
+  useEffect(() => {
+    async function fetchProducts() {
+      const data = await getProducts();
+      setProducts(data);
+      setCategories(getCategories(data));
     }
+    fetchProducts();
+  }, []);
 
-    // 検索フィルター
-    if (searchQuery.trim() !== '') {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(p =>
-        p.name.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query) ||
-        (p.description && p.description.toLowerCase().includes(query))
-      );
-    }
-
-    return filtered;
-  }, [products, selectedCategory, searchQuery]);
+  const filteredProducts = filterProducts(products, selectedCategory, searchQuery);
 
   return (
     <div className={styles.container}>
       <div className={styles.controls}>
-        <SearchBar
-          searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
-        />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <CategoryFilter
           categories={categories}
           selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
+          setSelectedCategory={setSelectedCategory}
         />
       </div>
 
       <div className={styles.results}>
-        <p className={styles.resultCount}>
-          {filteredProducts.length}件の商品が見つかりました
-        </p>
+        <p className={styles.resultCount}>{filteredProducts.length}件の商品が見つかりました</p>
       </div>
 
       {filteredProducts.length === 0 ? (
