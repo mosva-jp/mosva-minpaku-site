@@ -76,11 +76,22 @@
 .empty {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   text-align: center;
   color: #95a5a6;
+}
+
+.empty p {
+  margin: 0.5rem 0;
+}
+
+.emptyHint {
+  font-size: 0.875rem;
+  color: #bdc3c7;
+  margin-top: 1rem !important;
 }
 
 .items {
@@ -153,7 +164,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -161,6 +172,32 @@
 .totalPrice {
   font-size: 1.5rem;
   color: #1C613A;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.buyAllButton {
+  width: 100%;
+  padding: 1rem;
+  background: #1C613A;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(28, 97, 58, 0.2);
+}
+
+.buyAllButton:hover {
+  background: #154d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(28, 97, 58, 0.3);
 }
 
 .clearButton {

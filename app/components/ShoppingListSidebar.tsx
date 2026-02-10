@@ -12,6 +12,17 @@ interface ShoppingListSidebarProps {
 export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSidebarProps) {
   const { items, removeItem, clearList, getTotalPrice } = useShoppingList();
 
+  const handleBuyAll = () => {
+    // すべての商品のAmazonリンクを新しいタブで開く
+    items.forEach((item, index) => {
+      if (item.amazonUrl) {
+        setTimeout(() => {
+          window.open(item.amazonUrl, '_blank');
+        }, index * 500); // 0.5秒ずつ遅延して開く
+      }
+    });
+  };
+
   if (!isOpen) return null;
 
   return React.createElement(
@@ -38,7 +49,8 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
           ? React.createElement(
               'div',
               { className: styles.empty },
-              React.createElement('p', null, 'まだ商品が追加されていません')
+              React.createElement('p', null, 'まだ商品が追加されていません'),
+              React.createElement('p', { className: styles.emptyHint }, '商品カードの「+」ボタンでリストに追加できます')
             )
           : React.createElement(
               React.Fragment,
@@ -87,9 +99,18 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
                   )
                 ),
                 React.createElement(
-                  'button',
-                  { className: styles.clearButton, onClick: clearList },
-                  'リストをクリア'
+                  'div',
+                  { className: styles.actions },
+                  React.createElement(
+                    'button',
+                    { className: styles.buyAllButton, onClick: handleBuyAll },
+                    '🛒 まとめて購入する'
+                  ),
+                  React.createElement(
+                    'button',
+                    { className: styles.clearButton, onClick: clearList },
+                    'リストをクリア'
+                  )
                 )
               )
             )

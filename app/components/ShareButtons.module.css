@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shareButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  font-size: 1.125rem;
+}
+
+.label {
+  font-size: 0.875rem;
+}
+
+.line {
+  background: #06C755;
+  color: white;
+}
+
+.line:hover {
+  background: #05b34a;
+}
+
+.twitter {
+  background: #1DA1F2;
+  color: white;
+}
+
+.twitter:hover {
+  background: #1a8cd8;
+}
+
+.facebook {
+  background: #1877F2;
+  color: white;
+}
+
+.facebook:hover {
+  background: #166fe5;
+}
+
+.copy {
+  background: #7f8c8d;
+  color: white;
+}
+
+.copy:hover {
+  background: #6c7a7b;
+}
+
+@media (max-width: 768px) {
+  .container {
+    justify-content: center;
+  }
+
+  .shareButton {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .icon {
+    font-size: 1.25rem;
+  }
+}
