@@ -11,6 +11,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   const { addItem, removeItem, isInList } = useShoppingList();
   const inList = isInList(product.id);
 
@@ -36,9 +37,13 @@ export default function ProductCard({ product }: ProductCardProps) {
     if (inList) {
       removeItem(product.id);
     } else {
+      setIsAdding(true);
       addItem(product);
+      setTimeout(() => setIsAdding(false), 600);
     }
   };
+
+  const buttonClass = `${styles.listButton} ${inList ? styles.listButtonActive : ''} ${isAdding ? styles.adding : ''}`;
 
   const cardElement = React.createElement(
     'div',
@@ -60,7 +65,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       React.createElement(
         'button',
         {
-          className: `${styles.listButton} ${inList ? styles.listButtonActive : ''}`,
+          className: buttonClass,
           onClick: handleToggleList,
           title: inList ? 'リストから削除' : 'リストに追加',
         },
