@@ -1,4 +1,5 @@
 import ProductList from './components/ProductList';
+import ScrollHeader from './components/ScrollHeader';
 import { getProducts, getCategories } from '@/lib/notion';
 import styles from './page.module.css';
 
@@ -10,7 +11,8 @@ export default async function Home() {
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
+      <ScrollHeader />
+      <header className={styles.header} id="header">
         <div className={styles.headerContent}>
           <a href="https://mosva.jp/" target="_blank" rel="noopener noreferrer" className={styles.logo}>
             <span className={styles.logoText}>MOSVA</span>
