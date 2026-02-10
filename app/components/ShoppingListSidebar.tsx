@@ -13,14 +13,19 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
   const { items, removeItem, clearList, getTotalPrice } = useShoppingList();
 
   const handleBuyAll = () => {
-    // すべての商品のAmazonリンクを新しいタブで開く
     items.forEach((item, index) => {
       if (item.amazonUrl) {
         setTimeout(() => {
           window.open(item.amazonUrl, '_blank');
-        }, index * 500); // 0.5秒ずつ遅延して開く
+        }, index * 500);
       }
     });
+  };
+
+  const handleItemClick = (amazonUrl?: string) => {
+    if (amazonUrl) {
+      window.open(amazonUrl, '_blank');
+    }
   };
 
   if (!isOpen) return null;
@@ -65,7 +70,14 @@ export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSid
                     React.createElement(
                       'div',
                       { className: styles.itemInfo },
-                      React.createElement('h3', { className: styles.itemName }, item.name),
+                      React.createElement(
+                        'h3',
+                        {
+                          className: styles.itemName,
+                          onClick: () => handleItemClick(item.amazonUrl),
+                        },
+                        item.name
+                      ),
                       React.createElement('span', { className: styles.itemCategory }, item.category),
                       item.price &&
                         React.createElement(
