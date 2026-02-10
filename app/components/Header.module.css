@@ -29,6 +29,65 @@
   font-weight: 500;
   color: #2c3e50;
   cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navItem:hover {
+  color: #1C613A;
+}
+
+.servicesDropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  min-width: 280px;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  display: flex;
+  flex-direction: column;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+
+.dropdownItem:hover {
+  background: #f8f9fa;
+}
+
+.serviceName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1C613A;
+  margin-bottom: 0.25rem;
+}
+
+.serviceDesc {
+  font-size: 0.8125rem;
+  color: #7f8c8d;
 }
 
 .cartButton {
@@ -109,6 +168,10 @@
   }
 
   .navItem {
+    display: none;
+  }
+
+  .servicesDropdown {
     display: none;
   }
 
