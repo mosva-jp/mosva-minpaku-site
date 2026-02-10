@@ -5,12 +5,8 @@
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
   margin-bottom: 2.5rem;
-  padding: 2rem;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .results {
@@ -18,40 +14,41 @@
 }
 
 .resultCount {
-  color: #616161;
-  font-size: 1rem;
-  font-weight: 500;
+  color: #717171;
+  font-size: 0.875rem;
+  font-weight: 400;
 }
 
 .noResults {
   text-align: center;
-  padding: 5rem 1rem;
-  color: #757575;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 4rem 1rem;
+  color: #717171;
 }
 
 .noResults p {
-  font-size: 1.15rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    gap: 3rem 2rem;
+  }
 }
 
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem;
   }
 
   .controls {
-    gap: 1.25rem;
-    padding: 1.5rem;
+    gap: 1rem;
   }
 }
