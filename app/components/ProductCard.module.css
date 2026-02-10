@@ -19,7 +19,7 @@
   position: relative;
   width: 100%;
   padding-top: 100%;
-  background: #f8f9fa;
+  background: #ffffff;
 }
 
 .imageWrapper {
@@ -32,6 +32,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: #ffffff;
 }
 
 .image {
@@ -40,6 +41,7 @@
   object-fit: contain;
   padding: 1.5rem;
   transition: transform 0.4s ease;
+  background: #ffffff;
 }
 
 .card:hover .image {
@@ -280,7 +282,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f8f9fa;
+  background: #ffffff;
   border-radius: 12px;
   padding: 2rem;
 }
