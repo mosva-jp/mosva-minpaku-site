@@ -293,3 +293,8 @@
     font-size: 1.75rem;
   }
 }
+
+.cardWrapper {
+  position: relative;
+  height: 100%;
+}
