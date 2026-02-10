@@ -84,8 +84,10 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: white;
   border: 2px solid #1C613A;
@@ -215,7 +217,8 @@
 .button {
   display: block;
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.875rem;
+  min-height: 48px;
   background: #1C613A;
   color: white;
   text-align: center;
@@ -279,8 +282,10 @@
   right: 1rem;
   background: white;
   border: none;
-  width: 2.5rem;
-  height: 2.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   font-size: 1.5rem;
   color: #7f8c8d;
@@ -361,6 +366,7 @@
 .modalListButton {
   width: 100%;
   padding: 1rem;
+  min-height: 48px;
   background: white;
   color: #1C613A;
   border: 2px solid #1C613A;
@@ -384,6 +390,7 @@
 .amazonButton {
   width: 100%;
   padding: 1rem;
+  min-height: 48px;
   background: #1C613A;
   color: white;
   text-align: center;
