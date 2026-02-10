@@ -27,20 +27,22 @@ export default function CategoryFilter({
 
   return (
     <div className={styles.container}>
-      {allCategories.map((category) => (
-        <button
-          key={category}
-          className={`${styles.categoryButton} ${
-            selectedCategory === category ? styles.active : ''
-          }`}
-          onClick={() => setSelectedCategory(category)}
-        >
-          {categoryIcons[category] && (
-            <span className={styles.icon}>{categoryIcons[category]}</span>
-          )}
-          <span>{category}</span>
-        </button>
-      ))}
+      <div className={styles.scrollContainer}>
+        {allCategories.map((category) => (
+          <button
+            key={category}
+            className={`${styles.categoryButton} ${
+              selectedCategory === category ? styles.active : ''
+            }`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {categoryIcons[category] && (
+              <span className={styles.icon}>{categoryIcons[category]}</span>
+            )}
+            <span>{category}</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
