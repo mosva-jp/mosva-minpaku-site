@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useShoppingList } from './ShoppingListContext';
 import ShoppingListSidebar from './ShoppingListSidebar';
 import styles from './Header.module.css';
@@ -8,6 +8,7 @@ import styles from './Header.module.css';
 export default function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [showServicesMenu, setShowServicesMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const { items } = useShoppingList();
 
   const services = [
@@ -18,6 +19,22 @@ export default function Header() {
     { name: '空間デザイン', url: 'https://mosva.jp/design', description: '魅力的な空間づくり' },
     { name: '住宅宿泊管理', url: 'https://mosva.jp/minpaku-kanri', description: '管理業務を代行' },
   ];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowServicesMenu(false);
+      }
+    };
+
+    if (showServicesMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showServicesMenu]);
 
   return React.createElement(
     React.Fragment,
@@ -42,10 +59,16 @@ export default function Header() {
           'div',
           { 
             className: styles.servicesDropdown,
-            onMouseEnter: () => setShowServicesMenu(true),
-            onMouseLeave: () => setShowServicesMenu(false),
+            ref: menuRef,
           },
-          React.createElement('span', { className: styles.navItem }, 'サービス一覧 ▼'),
+          React.createElement(
+            'span', 
+            { 
+              className: styles.navItem,
+              onClick: () => setShowServicesMenu(!showServicesMenu),
+            }, 
+            'サービス一覧 ▼'
+          ),
           showServicesMenu && React.createElement(
             'div',
             { className: styles.dropdownMenu },
