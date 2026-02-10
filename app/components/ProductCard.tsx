@@ -83,7 +83,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         React.createElement(
           'div',
           { className: styles.priceContainer },
-          React.createElement('p', { className: styles.priceLabel }, '通常価格'),
+          React.createElement('p', { className: styles.priceLabel }, '参考価格'),
           React.createElement(
             'p',
             { className: styles.price },
@@ -145,7 +145,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 React.createElement(
                   'div',
                   { className: styles.modalPriceContainer },
-                  React.createElement('p', { className: styles.priceLabel }, '通常価格'),
+                  React.createElement('p', { className: styles.priceLabel }, '参考価格'),
                   React.createElement(
                     'p',
                     { className: styles.modalPrice },
