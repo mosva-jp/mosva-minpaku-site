@@ -12,7 +12,6 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [dragStart, setDragStart] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -103,8 +102,6 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt: product.name,
               className: styles.image,
               loading: 'lazy',
-              onLoad: () => setImageLoaded(true),
-              style: { opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' },
             })
           : React.createElement('div', { className: styles.noImage }, '画像なし')
       ),
