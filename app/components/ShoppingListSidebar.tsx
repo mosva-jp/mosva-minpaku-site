@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useShoppingList } from './ShoppingListContext';
 import styles from './ShoppingListSidebar.module.css';
 
@@ -11,6 +11,18 @@ interface ShoppingListSidebarProps {
 
 export default function ShoppingListSidebar({ isOpen, onClose }: ShoppingListSidebarProps) {
   const { items, removeItem, clearList, getTotalPrice } = useShoppingList();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handleBuyAll = () => {
     const itemsWithLinks = items.filter(item => item.amazonUrl);
