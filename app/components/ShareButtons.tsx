@@ -4,7 +4,7 @@ import React from 'react';
 import styles from './ShareButtons.module.css';
 
 export default function ShareButtons() {
-  const url = typeof window !== 'undefined' ? window.location.href : 'https://mosva.jp';
+  const url = typeof window !== 'undefined' ? window.location.href : 'https://items.mosva.jp';
   const text = '民泊備品・消耗品まとめ | MOSVA';
 
   const handleShare = (platform: string) => {
@@ -13,12 +13,6 @@ export default function ShareButtons() {
     switch (platform) {
       case 'line':
         shareUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text + ' ' + url)}`;
-        break;
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-        break;
-      case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
         break;
       case 'copy':
         navigator.clipboard.writeText(url);
@@ -43,26 +37,6 @@ export default function ShareButtons() {
       },
       React.createElement('span', { className: styles.icon }, '💬'),
       React.createElement('span', { className: styles.label }, 'LINE')
-    ),
-    React.createElement(
-      'button',
-      {
-        className: `${styles.shareButton} ${styles.twitter}`,
-        onClick: () => handleShare('twitter'),
-        title: 'Twitterで共有',
-      },
-      React.createElement('span', { className: styles.icon }, '🐦'),
-      React.createElement('span', { className: styles.label }, 'Twitter')
-    ),
-    React.createElement(
-      'button',
-      {
-        className: `${styles.shareButton} ${styles.facebook}`,
-        onClick: () => handleShare('facebook'),
-        title: 'Facebookで共有',
-      },
-      React.createElement('span', { className: styles.icon }, '📘'),
-      React.createElement('span', { className: styles.label }, 'Facebook')
     ),
     React.createElement(
       'button',
