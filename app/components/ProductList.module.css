@@ -5,23 +5,23 @@
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  margin-bottom: 2.5rem;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .results {
-  margin-bottom: 2rem;
+  margin: 24px 0 16px;
 }
 
 .resultCount {
-  color: #717171;
+  color: #222222;
   font-size: 0.875rem;
   font-weight: 400;
 }
 
 .noResults {
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 80px 24px;
   color: #717171;
 }
 
@@ -32,23 +32,41 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2.5rem 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1440px) {
   .grid {
-    gap: 3rem 2rem;
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1128px) and (max-width: 1439px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 950px) and (max-width: 1127px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 744px) and (max-width: 949px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 743px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 32px;
   }
 
   .controls {
-    gap: 1rem;
+    gap: 12px;
   }
 }

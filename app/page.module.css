@@ -2,108 +2,134 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
 }
 
 .header {
-  background: #ffffff;
-  border-bottom: 1px solid #ebebeb;
-  padding: 2rem 1.5rem;
   position: sticky;
   top: 0;
+  background: white;
+  border-bottom: 1px solid #EBEBEB;
+  padding: 1.25rem 2.5rem;
   z-index: 100;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.04);
 }
 
 .headerContent {
-  max-width: 1280px;
+  max-width: 1760px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
 }
 
-.logoIcon {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, #1C613A 0%, #2a8048 100%);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 1.25rem;
+.logoImage {
+  height: 32px;
+  width: auto;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #222222;
-  letter-spacing: -0.5px;
-}
-
-.subtitle {
-  font-size: 0.9rem;
-  color: #717171;
-  margin-top: 0.25rem;
-  font-weight: 400;
+  margin: 0;
 }
 
 .main {
   flex: 1;
-  max-width: 1280px;
+  max-width: 1760px;
   width: 100%;
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 0 2.5rem;
+}
+
+.hero {
+  padding: 3rem 0 2rem;
+  text-align: left;
+}
+
+.heroTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #222222;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: 1rem;
+  color: #717171;
+  margin: 0;
+  font-weight: 400;
 }
 
 .footer {
-  background: #f7f7f7;
-  border-top: 1px solid #ebebeb;
-  padding: 3rem 1.5rem;
-  margin-top: 5rem;
+  background: #F7F7F7;
+  border-top: 1px solid #EBEBEB;
+  margin-top: 4rem;
 }
 
 .footerContent {
-  max-width: 1280px;
+  max-width: 1760px;
   margin: 0 auto;
+  padding: 3rem 2.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: 2fr 3fr;
+  gap: 4rem;
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footerLogo {
+  height: 36px;
+  width: auto;
+}
+
+.footerDescription {
+  font-size: 0.875rem;
+  color: #717171;
+  margin: 0;
+}
+
+.footerLinks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
 .footerSection h3 {
   font-size: 0.875rem;
   font-weight: 600;
-  margin-bottom: 1rem;
   color: #222222;
+  margin: 0 0 1rem;
 }
 
 .footerSection p,
 .footerSection a {
   font-size: 0.875rem;
   color: #717171;
-  line-height: 1.8;
+  margin: 0.5rem 0;
   display: block;
+  text-decoration: none;
 }
 
 .footerSection a:hover {
-  color: #1C613A;
+  text-decoration: underline;
 }
 
 .footerBottom {
-  max-width: 1280px;
-  margin: 2rem auto 0;
-  padding-top: 2rem;
-  border-top: 1px solid #ebebeb;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid #EBEBEB;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -114,31 +140,74 @@
 .footerBottom p {
   font-size: 0.875rem;
   color: #717171;
+  margin: 0;
+}
+
+.disclaimer {
+  font-size: 0.75rem !important;
+  opacity: 0.8;
+}
+
+@media (max-width: 1128px) {
+  .header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .main {
+    padding: 0 1.5rem;
+  }
+
+  .footerContent {
+    padding: 2.5rem 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footerLinks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footerBottom {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
   .header {
-    padding: 1.5rem 1rem;
+    padding: 1rem;
+  }
+
+  .headerContent {
+    gap: 1rem;
+  }
+
+  .logoImage {
+    height: 28px;
   }
 
   .title {
-    font-size: 1.25rem;
-  }
-
-  .subtitle {
-    font-size: 0.8rem;
+    font-size: 0.875rem;
   }
 
   .main {
-    padding: 2rem 1rem;
+    padding: 0 1rem;
   }
 
-  .footerContent {
+  .hero {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 0.875rem;
+  }
+
+  .footerLinks {
     grid-template-columns: 1fr;
-  }
-
-  .footerBottom {
-    flex-direction: column;
-    text-align: center;
   }
 }

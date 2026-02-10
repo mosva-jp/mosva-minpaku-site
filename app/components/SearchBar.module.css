@@ -1,24 +1,29 @@
 .container {
   position: relative;
   width: 100%;
+  max-width: 850px;
 }
 
 .input {
   width: 100%;
-  padding: 1rem 3.5rem 1rem 3rem;
-  border: 1px solid #dddddd;
-  border-radius: 40px;
+  padding: 14px 48px;
+  border: 1px solid #B0B0B0;
+  border-radius: 32px;
   font-size: 0.875rem;
-  transition: all 0.2s ease;
+  transition: box-shadow 0.2s ease;
   background: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   color: #222222;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.input:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
 }
 
 .input:focus {
   outline: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  border-color: #222222;
+  box-shadow: 0 0 0 2px #222222;
+  border-color: transparent;
 }
 
 .input::placeholder {
@@ -27,41 +32,46 @@
 
 .searchIcon {
   position: absolute;
-  left: 1.25rem;
+  left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: #717171;
+  color: #222222;
   font-size: 1rem;
+  font-weight: 600;
   pointer-events: none;
 }
 
 .clearButton {
   position: absolute;
-  right: 1rem;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  background: #f7f7f7;
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 0.75rem;
   color: #717171;
+  font-size: 1.125rem;
+  border-radius: 50%;
+  transition: background 0.2s ease;
 }
 
 .clearButton:hover {
-  background: #ebebeb;
-  color: #222222;
+  background: #F7F7F7;
 }
 
 @media (max-width: 768px) {
   .input {
+    padding: 12px 42px;
     font-size: 0.875rem;
-    padding: 0.875rem 3rem 0.875rem 2.75rem;
+  }
+
+  .searchIcon {
+    left: 14px;
+    font-size: 0.875rem;
   }
 }
