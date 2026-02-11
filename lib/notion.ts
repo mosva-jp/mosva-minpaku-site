@@ -14,6 +14,7 @@ export interface Product {
   amazonUrl?: string;
   imageUrl?: string;
   description?: string;
+  sortOrder?: number;
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -32,6 +33,7 @@ export async function getProducts(): Promise<Product[]> {
         amazonUrl: properties.購入リンク?.url || undefined,
         imageUrl: properties.画像?.files?.[0]?.file?.url || properties.画像?.files?.[0]?.external?.url || undefined,
         description: properties.説明?.rich_text?.[0]?.plain_text || undefined,
+        sortOrder: properties.おすすめ順?.number || undefined,
       };
     });
   } catch (error) {
