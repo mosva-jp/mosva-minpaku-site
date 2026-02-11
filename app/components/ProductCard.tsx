@@ -9,6 +9,17 @@ interface ProductCardProps {
   product: Product;
 }
 
+// URLからショップ名を判定してボタンラベルを返す
+function getShopLabel(url: string): string {
+  if (url.includes('base.shop') || url.includes('thebase.com')) {
+    return 'BASEで見る';
+  }
+  if (url.includes('amazon.co.jp') || url.includes('amazon.com') || url.includes('amzn')) {
+    return 'Amazonで見る';
+  }
+  return '購入する';
+}
+
 export default function ProductCard({ product }: ProductCardProps) {
   const [showModal, setShowModal] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -143,7 +154,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             className: styles.button,
             onClick: (e: React.MouseEvent) => e.stopPropagation(),
           },
-          'Amazonで見る'
+          getShopLabel(product.amazonUrl)
         )
     )
   );
@@ -224,7 +235,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                       rel: 'noopener noreferrer',
                       className: styles.amazonButton,
                     },
-                    'Amazonで見る'
+                    getShopLabel(product.amazonUrl!)
                   )
               )
             )

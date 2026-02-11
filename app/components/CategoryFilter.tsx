@@ -17,6 +17,7 @@ const categoryIcons: Record<string, string> = {
   '寝具・リネン': '🛏️',
   '家電': '📺',
   '家具': '🪑',
+  'ステッカー': '🏷️',
   'その他': '📦',
 };
 
