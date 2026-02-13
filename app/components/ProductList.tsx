@@ -35,7 +35,13 @@ function sortProducts(products: Product[], sortBy: SortOption): Product[] {
       return sorted.sort((a, b) => a.name.localeCompare(b.name, 'ja'));
     case 'default':
     default:
-      return sorted;
+      return sorted.sort((a, b) => {
+        // おすすめ順の数値がある商品を優先、数値が小さいほど先
+        if (a.sortOrder == null && b.sortOrder == null) return 0;
+        if (a.sortOrder == null) return 1;
+        if (b.sortOrder == null) return 1;
+        return a.sortOrder - b.sortOrder;
+      });
   }
 }
 
