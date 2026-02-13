@@ -24,7 +24,7 @@ export default async function Home() {
 
       <main className={styles.main}>
         <div className={styles.hero}>
-          <h1 className={styles.heroTitle}>民泊備品・消耗品まとめ</h1>
+          <h1 className={styles.heroTitle}>民泊に使えるおすすめ商品</h1>
           <p className={styles.heroSubtitle}>必要な備品がすぐ見つかる</p>
         </div>
         <ProductList products={products} categories={categories} />
