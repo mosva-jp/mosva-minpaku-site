@@ -4,9 +4,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Product } from '@/lib/notion';
 import { useShoppingList } from './ShoppingListContext';
 import styles from './ProductCard.module.css';
+import Image from 'next/image';
 
 interface ProductCardProps {
   product: Product;
+    isFirstView?: boolean;
 }
 
 // URLからショップ名を判定してボタンラベルを返す
