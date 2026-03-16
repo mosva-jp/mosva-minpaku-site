@@ -25,13 +25,29 @@ export async function getProducts(): Promise<Product[]> {
 
     return response.results.map((page: any) => {
       const properties = page.properties;
+
+      // Notion内部の画像URL（一時URL）を取得
+      const notionFileUrl = properties.画像?.files?.[0]?.file?.url;
+      // 外部リンクの画像URL（期限切れしない）
+      const externalUrl = properties.画像?.files?.[0]?.external?.url;
+
+      // 画像URLを決定
+      let imageUrl: string | undefined;
+      if (notionFileUrl) {
+        // Notionの一時URLはプロキシAPI経由にする（期限切れ対策）
+        imageUrl = `/api/notion-image?url=${encodeURIComponent(notionFileUrl)}`;
+      } else if (externalUrl) {
+        // 外部URLはそのまま使う（期限切れしないため）
+        imageUrl = externalUrl;
+      }
+
       return {
         id: page.id,
         name: properties.商品名?.title?.[0]?.plain_text || '商品名',
         category: properties.カテゴリー?.select?.name || '未分類',
         price: properties.通常価格?.number || undefined,
         amazonUrl: properties.購入リンク?.url || undefined,
-        imageUrl: properties.画像?.files?.[0]?.file?.url || properties.画像?.files?.[0]?.external?.url || undefined,
+        imageUrl,
         description: properties.説明?.rich_text?.[0]?.plain_text || undefined,
         sortOrder: properties.おすすめ順?.number || undefined,
       };

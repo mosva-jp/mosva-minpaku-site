@@ -110,11 +110,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         'div',
         { className: styles.imageWrapper },
         product.imageUrl
-          ? React.createElement('img', {
+          ? React.createElement(Image, {
               src: product.imageUrl,
               alt: product.name,
               className: styles.image,
-              loading: 'lazy',
+              width: 300,
+              height: 300,
+              loading: 'lazy' as const,
+              style: { objectFit: 'contain' as const, width: '100%', height: 'auto' },
             })
           : React.createElement('div', { className: styles.noImage }, '画像なし')
       ),
@@ -188,10 +191,13 @@ export default function ProductCard({ product }: ProductCardProps) {
               'div',
               { className: styles.modalImage },
               product.imageUrl
-                ? React.createElement('img', {
+                ? React.createElement(Image, {
                     src: product.imageUrl,
                     alt: product.name,
-                    loading: 'lazy',
+                    width: 600,
+                    height: 600,
+                    loading: 'lazy' as const,
+                    style: { objectFit: 'contain' as const, width: '100%', height: 'auto' },
                   })
                 : React.createElement('div', { className: styles.noImage }, '画像なし')
             ),
